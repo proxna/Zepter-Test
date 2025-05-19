@@ -9,6 +9,10 @@ builder.Services.AddDbContext<ZepterTestContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddHttpClient<IApiService, ApiService>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7137");
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 

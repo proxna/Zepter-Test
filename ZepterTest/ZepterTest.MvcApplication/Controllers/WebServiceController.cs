@@ -2,27 +2,21 @@
 using System.Text.Json;
 using ZepterTest.Common.DTO;
 using ZepterTest.MvcApplication.Models;
+using ZepterTest.MvcApplication.Services;
 
 namespace ZepterTest.MvcApplication.Controllers
 {
     public class WebServiceController : Controller
     {
+        private readonly IApiService apiService;
+        public WebServiceController(IApiService apiService)
+        {
+            this.apiService = apiService;
+        }
+
         public async Task<IActionResult> Index()
         {
-            List<OrderInfoDTO> orderInfo = null;
-            using (var httpClient = new HttpClient())
-            {
-                var response = await httpClient.GetAsync("https://localhost:7137/api/orderinfo");
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    orderInfo = JsonSerializer.Deserialize<List<OrderInfoDTO>>(json, new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true
-                    });
-                }
-            }
-
+            var orderInfo = await apiService.GetOrderInfoAsync();
             return View(new WebServiceViewModel { Orders = orderInfo });
         }
     }
