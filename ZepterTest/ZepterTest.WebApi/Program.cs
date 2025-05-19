@@ -1,7 +1,12 @@
+using ZepterTest.WebApi.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Get connection string from configuration
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// Add services to the container.
+builder.Services.AddScoped<IOrderInfoService>(provider => new OrderInfoService(connectionString));
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
