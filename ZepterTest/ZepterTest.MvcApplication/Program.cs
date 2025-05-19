@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ZepterTest.Common;
+using ZepterTest.MvcApplication.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ builder.Services.AddDbContext<ZepterTestContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<IReportService, ReportService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
