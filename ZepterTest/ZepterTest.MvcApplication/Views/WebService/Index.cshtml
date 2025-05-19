@@ -1,0 +1,33 @@
+﻿@model WebServiceViewModel
+@{
+    ViewData["Title"] = "Dane z Webservice'u";
+}
+
+<h2>Dane z Webservice</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Metoda Płatności</th>
+            <th>Ulica</th>
+            <th>Miasto</th>
+            <th>Kod pocztowy</th>
+            <th>Wartość netto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderInfo in Model.Orders)
+        {
+            <tr>
+                <td>@orderInfo.Id</td>
+                <td>@orderInfo.PaymentMethod.ToString()</td>
+                <td>@orderInfo.Street</td>
+                <td>@orderInfo.City</td>
+                <td>@orderInfo.PostCode</td>
+                <td>@orderInfo.NetTotal</td>
+                <!-- Dodaj więcej komórek jeśli są inne właściwości -->
+            </tr>
+        }
+    </tbody>
+</table>

@@ -19,11 +19,6 @@ namespace ZepterTest.Common
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost,14330;Database=ZepterTest;User Id=sa;Password=zeptertest2137!;TrustServerCertificate=true");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -1,5 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using ZepterTest.Common;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddDbContext<ZepterTestContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
