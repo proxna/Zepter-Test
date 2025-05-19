@@ -1,0 +1,6 @@
+@ZepterTest.WebApi_HostAddress = http://localhost:5082
+
+GET {{ZepterTest.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
